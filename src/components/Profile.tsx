@@ -1,7 +1,8 @@
 import React from 'react';
+import css from './Profile.module.css';
 
 function Profile() {
-    return <div className='content'>
+    return <div className={css.content}>
         <div>
             <img
                 src='https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&h=350'/>
@@ -14,11 +15,11 @@ function Profile() {
             <div>
                 New post
             </div>
-            <div>
-                <div>
+            <div className='posts'>
+                <div className={css.item}>
                     post 1
                 </div>
-                <div>
+                <div className={css.item}>
                     post 2
                 </div>
             </div>
