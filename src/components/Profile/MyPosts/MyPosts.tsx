@@ -3,6 +3,12 @@ import css from './MyPosts.module.css';
 import Post from "./Post/Post";
 
 function MyPosts() {
+
+    let postsData = [
+        {id: 1, message: 'How are you', likes: 3},
+        {id: 2, message: 'I\'m fine bro!', likes: 5}
+    ]
+
     return (
         <div className={css.posts_wrapper}>
             <h3>
@@ -17,8 +23,8 @@ function MyPosts() {
                 </div>
             </div>
             <div className={css.posts}>
-                <Post message='How are you' likes={3}/>
-                <Post message='React' likes={5}/>
+                <Post message={postsData[0].message} likes={postsData[0].likes}/>
+                <Post message={postsData[1].message} likes={postsData[1].likes}/>
             </div>
         </div>
     )
