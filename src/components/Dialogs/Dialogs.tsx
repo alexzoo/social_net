@@ -22,6 +22,16 @@ type MessageType = {
     message: string
 }
 
+// type MessageDataType = {
+//     id: number
+//     message: string
+// }
+//
+// type DialogsDataType = {
+//     id: number
+//     name: string
+// }
+
 function Message(props: MessageType) {
     return (
         <div className={css.message}>{props.message}</div>
@@ -30,26 +40,32 @@ function Message(props: MessageType) {
 
 function Dialogs() {
 
-    let dialogsData = [
+    let dialogs: Array<{ name: string; id: number }> = [
         {id: 1, name: 'Alex'},
-        {id: 2, name: 'Sveta'}
+        {id: 2, name: 'Sveta'},
+        {id: 3, name: 'Jora'},
+        {id: 4, name: 'Konya'}
     ]
 
-    let messagesData = [
+    let dialogsElements = dialogs.map(d => <DialogItem name={d.name} id={d.id}/>)
+
+    let messages: Array<{ id: number; message: string }> = [
         {id: 1, message: 'Hi!'},
-        {id: 2, message: 'Yooooooo!'}
+        {id: 2, message: 'Yooooooo!'},
+        {id: 3, message: 'Viski!'},
+        {id: 4, message: 'Igogo!'}
     ]
+
+    let messagesElements = messages.map(m => <Message message={m.message}/>)
 
     return (
         <div>
             <div className={css.dialogs}>
                 <div className={css.dialogs_items}>
-                    <DialogItem name={dialogsData[0].name} id={dialogsData[0].id}/>
-                    <DialogItem name={dialogsData[1].name} id={dialogsData[1].id}/>
+                    {dialogsElements}
                 </div>
                 <div className={css.messages}>
-                    <Message message={messagesData[0].message}/>
-                    <Message message={messagesData[1].message}/>
+                    {messagesElements}
                 </div>
             </div>
         </div>

@@ -4,9 +4,9 @@ import css from './ProfileInfo.module.css'
 function ProfileInfo() {
     return (
         <div>
-            <div>
+            <div className={css.main_img}>
                 <img
-                    src='https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&h=350'
+                    src='https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg'
                     alt='fon'/>
             </div>
             <div className={css.description}>
