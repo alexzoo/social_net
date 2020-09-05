@@ -3,17 +3,15 @@ import './App.css';
 import Header from './components/Header/Header'
 import Navbar from './components/Navbar/Navbar'
 import Profile from './components/Profile/Profile'
-import Dialogs, {DialogsElementsType, MessagesElementsType} from "./components/Dialogs/Dialogs";
+import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
-import {PostDataType} from "./components/Profile/MyPosts/MyPosts";
+import {RootStateType} from "./redux/state";
 
-export type AppType = {
-    posts: Array<PostDataType>
-    dialogs: Array<DialogsElementsType>
-    messages: Array<MessagesElementsType>
+type AppPropsType = {
+    state: RootStateType
 }
 
-function App(props: AppType) {
+function App(props: AppPropsType) {
 
     return (
         <BrowserRouter>
@@ -21,8 +19,8 @@ function App(props: AppType) {
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route path='/dialogs' render={() => <Dialogs dialogs={props.dialogs} messages={props.messages}/>}/>
-                    <Route path='/profile' render={() => <Profile posts={props.posts}/>}/>
+                    <Route path='/dialogs' render={() => <Dialogs state={props.state.dialogsPage}/>}/>
+                    <Route path='/profile' render={() => <Profile profilePage={props.state.profilePage}/>}/>
                 </div>
             </div>
         </BrowserRouter>

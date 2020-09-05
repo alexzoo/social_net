@@ -1,12 +1,12 @@
 import React from 'react';
 import css from './Post.module.css';
 
-type PostsType = {
+type PostPropsType = {
     message: string
     likes: number
 }
 
-function Post(props: PostsType) {
+function Post(props: PostPropsType) {
     return (
         <div className={css.item}>
             <img
