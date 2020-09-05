@@ -1,12 +1,17 @@
 import React from 'react';
-import MyPosts from "./MyPosts/MyPosts";
+import MyPosts, {PostDataType} from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
-function Profile() {
+export type ProfileType = {
+    posts: Array<PostDataType>
+}
+
+function Profile(props: ProfileType) {
+
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts/>
+            <MyPosts posts={props.posts}/>
         </div>
     )
 }

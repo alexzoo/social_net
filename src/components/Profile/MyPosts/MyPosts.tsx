@@ -2,20 +2,19 @@ import React from 'react';
 import css from './MyPosts.module.css';
 import Post from "./Post/Post";
 
-type PostDataType = {
+export type PostDataType = {
     id: number
     message: string
+    likesCount: number
 }
 
-function MyPosts() {
+export type MyPostType = {
+    posts: Array<PostDataType>
+}
 
-    let posts: Array<{id: number, message: string, likes: number}> = [
-        {id: 1, message: 'How are you', likes: 3},
-        {id: 2, message: 'I\'m fine bro!', likes: 5},
-        {id: 3, message: 'Trololo', likes: 15}
-    ]
+function MyPosts(props: MyPostType) {
 
-    let postsElements = posts.map(p => <Post message={p.message} likes={p.likes}/>)
+    let postsElements = props.posts.map(p => <Post message={p.message} likes={p.likesCount}/>)
 
     return (
         <div className={css.posts_wrapper}>
