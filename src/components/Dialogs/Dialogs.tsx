@@ -23,6 +23,12 @@ function Dialogs(props: DialogsPropsType) {
                 <div className={css.messages}>
                     {messagesElements}
                 </div>
+                <div>
+                    <textarea></textarea>
+                </div>
+                <div>
+                    <button>Add post</button>
+                </div>
             </div>
         </div>
     )

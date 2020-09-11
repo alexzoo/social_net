@@ -1,8 +1,15 @@
 .item {
     color: antiquewhite;
+    margin-bottom: 5px;
 }
 
 .item img {
     width: 50px;
     border-radius: 20px;
+    margin-top: 5px;
+}
+
+.likes {
+    margin-top: 5px;
+    margin-bottom: 10px;
 }
