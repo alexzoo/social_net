@@ -1,12 +1,13 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import css from './MyPosts.module.css';
 import Post from "./Post/Post";
-import {addPost, PostType} from "../../../redux/state";
+import {PostType} from "../../../redux/state";
 
 type MyPostsPropsType = {
     myPosts: Array<PostType>
-    // posts: Array<PostType>
     addPost: (postMessage: string) => void
+    updateNewPostText: (newText: string) => void
+    messageForNewPost: string
 }
 
 function MyPosts(props: MyPostsPropsType) {
@@ -22,6 +23,12 @@ function MyPosts(props: MyPostsPropsType) {
         }
     }
 
+    let onPostChange = () => {
+        if (newPostElement.current) {
+            props.updateNewPostText(newPostElement.current.value)
+        }
+    }
+
     return (
         <div className={css.posts_wrapper}>
             <h3>
@@ -29,7 +36,7 @@ function MyPosts(props: MyPostsPropsType) {
             </h3>
             <div>
                 <div>
-                    <textarea ref={newPostElement}></textarea>
+                    <textarea onChange={onPostChange} ref={newPostElement} value={props.messageForNewPost}/>
                 </div>
                 <div>
                     <button onClick={addPost}>Add post</button>
