@@ -64,14 +64,15 @@ let state: RootStateType = {
     sidebar: {}
 }
 
-export const addPost = (postText: string) => {
+export const addPost = () => {
 
     const newPost: PostType = {
         id: Math.random(),
-        message: postText,
+        message: state.profilePage.messageForNewPost,
         likesCount: 0
     }
     state.profilePage.posts.push(newPost)
+    state.profilePage.messageForNewPost = ''
     renderEntireTree(state)
 }
 
