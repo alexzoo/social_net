@@ -1,4 +1,17 @@
-import {renderEntireTree} from "./render";
-import state from "./redux/state";
+import state, {addPost, RootStateType, subscribe, updateNewPostText} from "./redux/state";
+import ReactDOM from "react-dom";
+import App from "./App";
+import React from "react";
 
-renderEntireTree(state)
+let rerenderEntireTree = () => {
+    ReactDOM.render(<App
+        state={state}
+        addPost={addPost}
+        updateNewPostText={updateNewPostText}
+        messageForNewPost={state.profilePage.messageForNewPost}
+    />, document.getElementById('root'));
+}
+
+rerenderEntireTree()
+
+subscribe(rerenderEntireTree)
