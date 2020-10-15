@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import css from './MyPosts.module.css';
 import Post from "./Post/Post";
 import {PostType} from "../../../redux/state";
@@ -15,7 +15,7 @@ function MyPosts(props: MyPostsPropsType) {
     let postsElements = props.myPosts.map(p => <Post message={p.message} likes={p.likesCount}/>)
     let newPostElement = React.createRef<HTMLTextAreaElement>()
 
-    let addPost = () => {
+    let addPostCallback = () => {
         if(newPostElement.current){
             let text = newPostElement.current.value
             props.addPost(text)
@@ -23,10 +23,11 @@ function MyPosts(props: MyPostsPropsType) {
         }
     }
 
-    let onPostChange = () => {
-        if (newPostElement.current) {
-            props.updateNewPostText(newPostElement.current.value)
-        }
+    let onPostChangeCallback = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        // if (newPostElement.current) {
+        //     props.updateNewPostText(newPostElement.current.value)
+        // }
+        props.updateNewPostText(e.currentTarget.value)
     }
 
     return (
@@ -36,10 +37,10 @@ function MyPosts(props: MyPostsPropsType) {
             </h3>
             <div>
                 <div>
-                    <textarea onChange={onPostChange} ref={newPostElement} value={props.messageForNewPost}/>
+                    <textarea onChange={onPostChangeCallback} ref={newPostElement} value={props.messageForNewPost}/>
                 </div>
                 <div>
-                    <button onClick={addPost}>Add post</button>
+                    <button onClick={addPostCallback}>Add post</button>
                 </div>
             </div>
             <div className={css.posts}>
