@@ -34,12 +34,22 @@ export type RootStateType = {
 
 export type StoreType = {
     _state: RootStateType
-    addPost: () => void
-    updateNewPostText: (newText: string) => void
     subscribe: (callback: () => void) => void
-    _onChange: () => void
+    _callSubscriber: () => void
     getState: () => RootStateType
+    dispatch: (action: ActionTypes) => void
 }
+
+export type AddPostActionType = {
+    type: 'ADD-POST'
+}
+
+export type UpdatePostActionType = {
+    type: 'UPDATE-NEW-POST-TEXT'
+    newText: string
+}
+
+export type ActionTypes = AddPostActionType | UpdatePostActionType
 
 let store: StoreType = {
     _state: {
@@ -68,28 +78,29 @@ let store: StoreType = {
         },
         sidebar: {}
     },
-    addPost() {
-        const newPost: PostType = {
-            id: Math.random(),
-            message: this._state.profilePage.messageForNewPost,
-            likesCount: 0
-        }
-        this._state.profilePage.posts.push(newPost)
-        this._state.profilePage.messageForNewPost = ''
-        this._onChange()
-    },
-    updateNewPostText(newText: string) {
-        this._state.profilePage.messageForNewPost = newText
-        this._onChange()
+    _callSubscriber() {
+        console.log('State changed')
     },
     subscribe(callback) {
-        this._onChange = callback
-    },
-    _onChange() {
-        console.log('State changed')
+        this._callSubscriber = callback
     },
     getState() {
         return this._state
+    },
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            const newPost: PostType = {
+                id: Math.random(),
+                message: this._state.profilePage.messageForNewPost,
+                likesCount: 0
+            }
+            this._state.profilePage.posts.push(newPost)
+            this._state.profilePage.messageForNewPost = ''
+            this._callSubscriber()
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.profilePage.messageForNewPost = action.newText
+            this._callSubscriber()
+        }
     }
 }
 

@@ -9,9 +9,6 @@ import {StoreType} from "./redux/state";
 
 type AppPropsType = {
     store: StoreType
-    // addPost: () => void
-    // updateNewPostText: (newText: string) => void
-    // messageForNewPost: string
 }
 
 function App(props: AppPropsType) {
@@ -27,9 +24,8 @@ function App(props: AppPropsType) {
                     <Route path='/dialogs' render={() => <Dialogs state={state.dialogsPage}/>}/>
                     <Route path='/profile' render={() => <Profile
                         profilePage={state.profilePage}
-                        updateNewPostText={props.store.updateNewPostText.bind(props.store)}
                         messageForNewPost={state.profilePage.messageForNewPost}
-                        addPost={props.store.addPost.bind(props.store)}/>}/>
+                        dispatch={props.store.dispatch.bind(props.store)}/>}/>
                 </div>
             </div>
         </BrowserRouter>

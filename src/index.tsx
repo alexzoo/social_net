@@ -6,9 +6,6 @@ import React from "react";
 let rerenderEntireTree = () => {
     ReactDOM.render(<App
         store={store}
-        // addPost={store.addPost}
-        // updateNewPostText={store.updateNewPostText}
-        // messageForNewPost={store._state.profilePage.messageForNewPost}
     />, document.getElementById('root'));
 }
 
