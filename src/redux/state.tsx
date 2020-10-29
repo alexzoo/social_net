@@ -1,37 +1,33 @@
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+
 type MessageType = {
     id: number
     message: string
 }
-
 type DialogType = {
     id: number
     name: string
 }
-
 export type PostType = {
     id: number
     message: string
     likesCount: number
 }
-
 export type ProfilePageType = {
     messageForNewPost: string
     posts: Array<PostType>
 }
-
 export type DialogPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
 }
-
 export type SidebarType = {}
-
 export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogPageType
     sidebar: SidebarType
 }
-
 export type StoreType = {
     _state: RootStateType
     subscribe: (callback: () => void) => void
@@ -40,16 +36,19 @@ export type StoreType = {
     dispatch: (action: ActionTypes) => void
 }
 
-export type AddPostActionType = {
-    type: 'ADD-POST'
+export type ActionTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextAC>
+
+export const addPostAC = () => {
+    return {
+        type: ADD_POST
+    } as const
 }
 
-export type UpdatePostActionType = {
-    type: 'UPDATE-NEW-POST-TEXT'
-    newText: string
+export const updateNewPostTextAC = (text: string) => {
+    return {
+        type: UPDATE_NEW_POST_TEXT, newText: text
+    } as const
 }
-
-export type ActionTypes = AddPostActionType | UpdatePostActionType
 
 let store: StoreType = {
     _state: {
@@ -88,7 +87,7 @@ let store: StoreType = {
         return this._state
     },
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
+        if (action.type === ADD_POST) {
             const newPost: PostType = {
                 id: Math.random(),
                 message: this._state.profilePage.messageForNewPost,
@@ -97,7 +96,7 @@ let store: StoreType = {
             this._state.profilePage.posts.push(newPost)
             this._state.profilePage.messageForNewPost = ''
             this._callSubscriber()
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.messageForNewPost = action.newText
             this._callSubscriber()
         }
