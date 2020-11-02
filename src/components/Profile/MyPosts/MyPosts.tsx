@@ -5,22 +5,27 @@ import {ActionTypes, addPostAC, updateNewPostTextAC} from "../../../redux/profil
 import {PostType} from "../../../redux/store";
 
 type MyPostsPropsType = {
-    myPosts: Array<PostType>
-    dispatch: (action: ActionTypes) => void
+    // myPosts: Array<PostType>
+    // dispatch: (action: ActionTypes) => void
+    // messageForNewPost: string
+    addPostAC: () => void
+    updateNewPostTextAC: (text: string) => any
+    posts: Array<PostType>
     messageForNewPost: string
+
 }
 
 function MyPosts(props: MyPostsPropsType) {
 
-    let postsElements = props.myPosts.map(p => <Post message={p.message} likes={p.likesCount}/>)
-    let newPostElement = React.createRef<HTMLTextAreaElement>()
+    const postsElements = props.posts.map(p => <Post message={p.message} likes={p.likesCount}/>)
+    const newPostElement = React.createRef<HTMLTextAreaElement>()
 
-    let addPostCallback = () => {
-        props.dispatch(addPostAC())
+    const addPostCallback = () => {
+        props.addPostAC()
     }
 
-    let onPostChangeCallback = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(updateNewPostTextAC(e.currentTarget.value))
+    const onPostChangeCallback = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.updateNewPostTextAC(e.currentTarget.value)
     }
 
     return (
