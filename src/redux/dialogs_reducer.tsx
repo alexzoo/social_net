@@ -1,10 +1,27 @@
 import {v1} from "uuid";
 import {ActionTypes} from "./profile_reducer";
+import {DialogPageType} from "./store";
 
 const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
 const SEND_MESSAGE = 'SEND_MESSAGE'
 
-const dialogsReducer = (state: any, action: ActionTypes): any => {
+const initialState = {
+    dialogs: [
+        {id: v1(), name: 'Alex'},
+        {id: v1(), name: 'Sveta'},
+        {id: v1(), name: 'Jora'},
+        {id: v1(), name: 'Konya'}
+    ],
+    messages: [
+        {id: v1(), message: 'Hi!'},
+        {id: v1(), message: 'Yooooooo!'},
+        {id: v1(), message: 'Viski!'},
+        {id: v1(), message: 'Igogo!'}
+    ],
+    newMessageText: ''
+}
+
+const dialogsReducer = (state: DialogPageType = initialState, action: ActionTypes): any => {
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_TEXT:
             state.newMessageText = action.newMessage
