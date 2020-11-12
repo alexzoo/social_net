@@ -9,7 +9,7 @@ type ProfilePropsType = {
     // profilePage: ProfilePageType
     // dispatch: (action: ActionTypes) => void
     // messageForNewPost: string
-    store: StoreType
+    // store: StoreType
 }
 
 function Profile(props: ProfilePropsType) {
@@ -17,8 +17,7 @@ function Profile(props: ProfilePropsType) {
     return (
         <div>
             <ProfileInfo/>
-            <MyPostsContainer store={props.store}
-            />
+            <MyPostsContainer />
         </div>
     )
 }
