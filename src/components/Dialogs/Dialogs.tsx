@@ -18,9 +18,9 @@ function Dialogs(props: DialogsPropsType) {
 
     const state = props.dialogsPage
 
-    let dialogsElements = state.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>)
+    let dialogsElements = state.dialogs.map(d => <DialogItem name={d.name} id={d.id} key={d.id}/>)
 
-    let messagesElements = state.messages.map(m => <Message message={m.message}/>)
+    let messagesElements = state.messages.map(m => <Message message={m.message} key={m.id}/>)
 
     let newMessageText = state.newMessageText
 
