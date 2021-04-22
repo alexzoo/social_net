@@ -7,8 +7,6 @@ import {StoreType} from "../../redux/state";
 
 type DialogsPropsType = {
     // state: DialogPageType
-    // state: DialogPageType
-
     store: StoreType
 }
 
