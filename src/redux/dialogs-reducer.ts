@@ -1,7 +1,9 @@
+import { DialogPageType } from "./state"
+
 const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
 const SEND_MESSAGE = 'SEND_MESSAGE'
 
-const dialogsReducer = (state, action) => {
+const dialogsReducer = (state: DialogPageType , action: any) => {
 	switch(action.type){
 		case UPDATE_NEW_MESSAGE_TEXT:
 			state.newMessageText = action.newMessage
@@ -19,6 +21,6 @@ const dialogsReducer = (state, action) => {
 
 export const sendMessageAC = () => ({type: SEND_MESSAGE})
 
-export const updateNewMessageTextAC = (newMessage) => ({type: UPDATE_NEW_MESSAGE_TEXT, newMessage: newMessage})
+export const updateNewMessageTextAC = (newMessage: string) => ({type: UPDATE_NEW_MESSAGE_TEXT, newMessage: newMessage})
 
 export default dialogsReducer

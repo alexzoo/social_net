@@ -25,6 +25,7 @@ export type DialogPageType = {
     newMessageText: string
 }
 export type SidebarType = {}
+
 export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogPageType
