@@ -1,11 +1,14 @@
 import { ProfilePageType } from "./state"
 
-const ADD_POST = 'ADD-POST'
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+enum ProfileActionTypes {
+	ADD_POST = 'ADD-POST',
+	UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT'
+}
 
-const profileReducer = (state: ProfilePageType, action: any) => {
+
+const profileReducer = (state: ProfilePageType, action: any): ProfilePageType => {
 	switch (action.type){
-		case ADD_POST: 
+		case ProfileActionTypes.ADD_POST:
 			let newPost = {
 				id: Math.random(),
 				message: state.messageForNewPost,
@@ -14,15 +17,15 @@ const profileReducer = (state: ProfilePageType, action: any) => {
 			state.posts.push(newPost)
 			state.messageForNewPost = ''
 			return state
-		case UPDATE_NEW_POST_TEXT:
+		case ProfileActionTypes.UPDATE_NEW_POST_TEXT:
 			state.messageForNewPost = action.newText
 			return state
 		default: return state	
 	}
 }
 
-export const addPostAC = () => ({type: ADD_POST})
+export const addPostAC = () => ({type: ProfileActionTypes.ADD_POST})
 
-export const updateNewPostTextAC = (text: string) => ({type: UPDATE_NEW_POST_TEXT, newText: text})
+export const updateNewPostTextAC = (text: string) => ({type: ProfileActionTypes.UPDATE_NEW_POST_TEXT, newText: text})
 
 export default profileReducer
