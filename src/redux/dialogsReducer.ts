@@ -1,11 +1,27 @@
-import {DialogPageType} from "./state"
+import {DialogPageType} from "./store"
 
 enum DialogActionTypes {
     UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT',
     SEND_MESSAGE = 'SEND_MESSAGE'
 }
 
-const dialogsReducer = (state: DialogPageType, action: any): DialogPageType => {
+const initialState: DialogPageType = {
+    dialogs: [
+        {id: 1, name: 'Alex'},
+        {id: 2, name: 'Sveta'},
+        {id: 3, name: 'Jora'},
+        {id: 4, name: 'Konya'}
+    ],
+    messages: [
+        {id: 1, message: 'Hi!'},
+        {id: 2, message: 'Yooooooo!'},
+        {id: 3, message: 'Viski!'},
+        {id: 4, message: 'Igogo!'}
+    ],
+    newMessageText: ''
+}
+
+const dialogsReducer = (state = initialState, action: any): DialogPageType => {
     switch (action.type) {
         case DialogActionTypes.UPDATE_NEW_MESSAGE_TEXT:
             state.newMessageText = action.newMessage
