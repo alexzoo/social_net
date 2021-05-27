@@ -1,12 +1,12 @@
-import dialogsReducer, {sendMessageAC, updateNewMessageTextAC} from "./dialogs-reducer";
-import profileReducer, {addPostAC, updateNewPostTextAC} from "./profile-reducer";
-import sidebarReducer from "./sidebar-reducer";
+import dialogsReducer, {sendMessageAC, updateNewMessageTextAC} from "./dialogsReducer";
+import profileReducer, {addPostAC, updateNewPostTextAC} from "./profileReducer";
+import sidebarReducer from "./sidebarReducer";
 
-type MessageType = {
+export type MessageType = {
     id: number
     message: string
 }
-type DialogType = {
+export type DialogType = {
     id: number
     name: string
 }
