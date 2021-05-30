@@ -1,26 +1,29 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import css from './MyPosts.module.css';
 import Post from "./Post/Post";
-import {ActionTypes, PostType} from "../../../redux/store";
-import {addPostAC, updateNewPostTextAC} from "../../../redux/profileReducer";
+import {PostType} from "../../../redux/store";
 
 type MyPostsPropsType = {
-    myPosts: Array<PostType>
-    dispatch: (action: ActionTypes) => void
+    posts: Array<PostType>
     messageForNewPost: string
+    updateNewPostText: (text: string) => void
+    addPost: () => void
 }
 
 function MyPosts(props: MyPostsPropsType) {
 
-    let postsElements = props.myPosts.map(p => <Post message={p.message} likes={p.likesCount}/>)
+    let postsElements = props.posts.map(p => <Post message={p.message} likes={p.likesCount}/>)
     let newPostElement = React.createRef<HTMLTextAreaElement>()
 
-    let addPostCallback = () => {
-        props.dispatch(addPostAC())
+    let onAddPost = () => {
+        props.addPost()
     }
 
-    let onPostChangeCallback = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(updateNewPostTextAC(e.currentTarget.value))
+    let onPostChange = () => {
+        let text = newPostElement.current?.value
+        if (text) {
+            props.updateNewPostText(text)
+        }
     }
 
     return (
@@ -30,10 +33,10 @@ function MyPosts(props: MyPostsPropsType) {
             </h3>
             <div>
                 <div>
-                    <textarea onChange={onPostChangeCallback} ref={newPostElement} value={props.messageForNewPost}/>
+                    <textarea onChange={onPostChange} ref={newPostElement} value={props.messageForNewPost}/>
                 </div>
                 <div>
-                    <button onClick={addPostCallback}>Add post</button>
+                    <button onClick={onAddPost}>Add post</button>
                 </div>
             </div>
             <div className={css.posts}>
