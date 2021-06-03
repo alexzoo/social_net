@@ -6,8 +6,8 @@ import {PostType} from "../../../redux/store";
 type MyPostsPropsType = {
     posts: Array<PostType>
     messageForNewPost: string
-    updateNewPostText: (text: string) => void
-    addPost: () => void
+    updateNewPostText(text: string): void
+    addPost(): void
 }
 
 function MyPosts(props: MyPostsPropsType) {
