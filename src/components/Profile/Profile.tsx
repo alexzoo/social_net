@@ -7,12 +7,12 @@ type ProfilePropsType = {
     store: StoreType
 }
 
-function Profile(props: ProfilePropsType) {
+function Profile() {
 
     return (
         <div>
             <ProfileInfo/>
-            <MyPostsContainer store={props.store}/>
+            <MyPostsContainer/>
         </div>
     )
 }
