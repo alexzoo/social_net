@@ -1,14 +1,10 @@
 import React from 'react';
 import css from './MyPosts.module.css';
 import Post from "./Post/Post";
-import {PostType} from "../../../redux/store";
+import {MapDispatchToPropsType, MapStateToPropsType} from "./MyPostsContainer";
 
-type MyPostsPropsType = {
-    posts: Array<PostType>
-    messageForNewPost: string
-    updateNewPostText(text: string): void
-    addPost(): void
-}
+
+type MyPostsPropsType = MapStateToPropsType & MapDispatchToPropsType
 
 function MyPosts(props: MyPostsPropsType) {
 

@@ -2,36 +2,36 @@ import dialogsReducer, {sendMessageAC, updateNewMessageTextAC} from "./dialogsRe
 import profileReducer, {addPostAC, updateNewPostTextAC} from "./profileReducer";
 import sidebarReducer from "./sidebarReducer";
 
-export type MessageType = {
+type MessageType = {
     id: number
     message: string
 }
-export type DialogType = {
+type DialogType = {
     id: number
     name: string
 }
-export type PostType = {
+type PostType = {
     id: number
     message: string
     likesCount: number
 }
-export type ProfilePageType = {
+type ProfilePageType = {
     messageForNewPost: string
     posts: Array<PostType>
 }
-export type DialogPageType = {
+type DialogPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
     newMessageText: string
 }
-export type SidebarType = {}
+type SidebarType = {}
 
-export type RootStateType = {
+type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogPageType
     sidebar: SidebarType
 }
-export type StoreType = {
+type StoreType = {
     _state: RootStateType
     subscribe: (callback: () => void) => void
     _callSubscriber: () => void
@@ -39,7 +39,7 @@ export type StoreType = {
     dispatch: (action: ActionTypes) => void
 }
 
-export type ActionTypes = ReturnType<typeof addPostAC>
+type ActionTypes = ReturnType<typeof addPostAC>
     | ReturnType<typeof updateNewPostTextAC>
     | ReturnType<typeof sendMessageAC>
     | ReturnType<typeof updateNewMessageTextAC>
@@ -90,4 +90,3 @@ let store: StoreType = {
     }
 }
 
-export default store

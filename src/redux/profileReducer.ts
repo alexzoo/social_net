@@ -1,20 +1,31 @@
-import {ProfilePageType} from "./store"
-
 enum ProfileActionTypes {
     ADD_POST = 'ADD-POST',
     UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT'
 }
 
-const initialState: ProfilePageType = {
+export type PostType = {
+    id: number
+    message: string
+    likesCount: number
+}
+
+// export type ProfilePageType = {
+//     messageForNewPost: string
+//     posts: Array<PostType>
+// }
+
+const initialState = {
     messageForNewPost: 'it-kamasutra',
     posts: [
         {id: 1, message: 'How are you', likesCount: 3},
         {id: 2, message: 'I\'m fine bro!', likesCount: 5},
         {id: 3, message: 'Trololo', likesCount: 15}
-    ]
+    ] as Array<PostType>
 }
 
-const profileReducer = (state = initialState, action: any): ProfilePageType => {
+export type ProfilePageType = typeof initialState
+
+const profileReducer = (state: ProfilePageType = initialState, action: any): ProfilePageType => {
     switch (action.type) {
         case ProfileActionTypes.ADD_POST:
             let newPost = {

@@ -1,4 +1,5 @@
-import { SidebarType } from "./store"
+
+type SidebarType = {}
 
 const initialState:SidebarType = {
 
