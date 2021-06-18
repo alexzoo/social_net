@@ -1,3 +1,5 @@
+import {v1} from "uuid";
+
 enum ProfileActionTypes {
     ADD_POST = 'ADD-POST',
     UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT'
@@ -8,11 +10,6 @@ export type PostType = {
     message: string
     likesCount: number
 }
-
-// export type ProfilePageType = {
-//     messageForNewPost: string
-//     posts: Array<PostType>
-// }
 
 const initialState = {
     messageForNewPost: 'it-kamasutra',
@@ -29,16 +26,22 @@ const profileReducer = (state: ProfilePageType = initialState, action: any): Pro
     switch (action.type) {
         case ProfileActionTypes.ADD_POST:
             let newPost = {
-                id: Math.random(),
+                id: +v1(),
                 message: state.messageForNewPost,
                 likesCount: 0
             }
-            state.posts.push(newPost)
-            state.messageForNewPost = ''
-            return state
+            return {
+                ...state,
+                posts: [...state.posts, newPost],
+                messageForNewPost: ''
+            }
+
         case ProfileActionTypes.UPDATE_NEW_POST_TEXT:
-            state.messageForNewPost = action.newText
-            return state
+            return {
+                ...state,
+                messageForNewPost: action.newText
+            }
+
         default:
             return state
     }

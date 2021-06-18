@@ -1,3 +1,5 @@
+import {v1} from 'uuid'
+
 enum DialogActionTypes {
     UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT',
     SEND_MESSAGE = 'SEND_MESSAGE'
@@ -12,12 +14,6 @@ type DialogType = {
     id: number
     name: string
 }
-
-// export type DialogPageType = {
-//     dialogs: Array<DialogType>
-//     messages: Array<MessageType>
-//     newMessageText: string
-// }
 
 const initialState = {
     dialogs: [
@@ -37,16 +33,22 @@ const initialState = {
 
 export type DialogPageType = typeof initialState
 
-const dialogsReducer = (state:DialogPageType = initialState, action: any): DialogPageType => {
+const dialogsReducer = (state: DialogPageType = initialState, action: any): DialogPageType => {
     switch (action.type) {
         case DialogActionTypes.UPDATE_NEW_MESSAGE_TEXT:
-            state.newMessageText = action.newMessage
-            return state
+            return {
+                ...state,
+                newMessageText: action.newMessage
+            }
+
         case DialogActionTypes.SEND_MESSAGE:
             let newMessage = state.newMessageText
-            state.newMessageText = ''
-            state.messages.push({id: 6, message: newMessage})
-            return state
+            return {
+                ...state,
+                messages: [...state.messages, {id: +v1(), message: newMessage}],
+                newMessageText: ''
+            }
+
         default:
             return state
 
