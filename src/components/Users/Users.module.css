@@ -1,0 +1,14 @@
+.item {
+    color: antiquewhite;
+    margin-bottom: 5px;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+}
+
+.likes {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
