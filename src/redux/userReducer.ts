@@ -7,8 +7,11 @@ enum UserActionTypes {
 export type UserType = {
     id: number
     followed: boolean
-    avatarUrl: string
-    fullName: string
+    photos: {
+        small: string
+        large: string
+    }
+    name: string
     status: string
     location: {
         city: string,
