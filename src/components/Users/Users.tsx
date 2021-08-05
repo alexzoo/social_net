@@ -7,14 +7,19 @@ import {UserType} from "../../redux/userReducer";
 
 type UsersProps = MapStateToPropsType & MapDispatchToPropsType
 
+type GetUsersType = {
+    error: string | null
+    items: UserType[]
+    totalCount: number
+}
+
 const Users = (props: UsersProps) => {
     if (props.users.length === 0) {
 
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+        axios.get<GetUsersType>('https://social-network.samuraijs.com/api/1.0/users')
             .then(response => {
                 props.setUsers(response.data.items)
             })
-
 
         // props.setUsers([
         //     {
@@ -64,10 +69,10 @@ const Users = (props: UsersProps) => {
                             <div>{u.name}</div>
                             <div>{u.status}</div>
                         </span>
-                        <span>
-                            <div>{'u.location.country'}</div>
-                            <div>{'u.location.city'}</div>
-                        </span>
+                        {/*<span>*/}
+                        {/*    <div>{'u.location.country'}</div>*/}
+                        {/*    <div>{'u.location.city'}</div>*/}
+                        {/*</span>*/}
                     </span>
                 </div>)
             }

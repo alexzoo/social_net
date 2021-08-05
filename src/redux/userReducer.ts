@@ -8,15 +8,12 @@ export type UserType = {
     id: number
     followed: boolean
     photos: {
-        small: string
-        large: string
+        small: null | string
+        large: null | string
     }
     name: string
-    status: string
-    location: {
-        city: string,
-        country: string
-    }
+    status: string | null
+    uniqueUrlName: string | null
 }
 
 const initialState = {
