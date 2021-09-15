@@ -7,13 +7,13 @@ enum UserActionTypes {
 export type UserType = {
     id: number
     followed: boolean
-    avatarUrl: string
-    fullName: string
-    status: string
-    location: {
-        city: string,
-        country: string
+    photos: {
+        small: null | string
+        large: null | string
     }
+    name: string
+    status: string | null
+    uniqueUrlName: string | null
 }
 
 const initialState = {
